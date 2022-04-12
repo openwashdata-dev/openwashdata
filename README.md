@@ -10,9 +10,9 @@ This directory contains scripts used for cleaning dara from the `raw_data` direc
 
 The data directory contains two subdirectories, `raw_data` and `tidy_data`.
 
-## LICENSE.md
+## .gitignore
 
-An open license will added as a standard (e.g. CC0, CC-BY, ODBL) to ensure cleaned data can be used freely without restrictions downstream
+A file to list files and directories to be ignored from being tracked with git version control system.
 
 ## CITATION.cff
 
@@ -21,4 +21,17 @@ Contains citation information displayed by GitHub and directly exportable as Bib
 ## CONDUCT.md
 
 Code of conduct enforced by the community.
+
+## LICENSE.md
+
+An open license will added as a standard (e.g. CC0, CC-BY, ODBL) to ensure cleaned data can be used freely without restrictions downstream
+
+## README.md 
+
+This README file.
+
+## openwashdata.Proj
+
+An RStudio Project file.
+
 
