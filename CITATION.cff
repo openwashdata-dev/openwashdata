@@ -7,16 +7,17 @@ cff-version: 1.2.0
 message: 'To cite package "openwashdata" in publications use:'
 type: dataset
 license: CC-BY-4.0
-title: 'openwashdata: What the Package Does (One Line, Title Case)'
+title: 'openwashdata: This package provides support functions for creating openwashdata
+  R data packages'
 version: 0.0.0.9000
 abstract: What the package does (one paragraph).
 authors:
-- family-names: Last
-  given-names: First
-  email: first.last@example.com
-  orcid: https://orcid.org/YOUR-ORCID-ID
+- family-names: Schöbitz
+  given-names: Lars
+  email: lschoebitz@ethz.ch
+  orcid: https://orcid.org/0000-0003-2196-5015
 contact:
-- family-names: Last
-  given-names: First
-  email: first.last@example.com
-  orcid: https://orcid.org/YOUR-ORCID-ID
+- family-names: Schöbitz
+  given-names: Lars
+  email: lschoebitz@ethz.ch
+  orcid: https://orcid.org/0000-0003-2196-5015
