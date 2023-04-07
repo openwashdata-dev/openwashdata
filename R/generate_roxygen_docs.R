@@ -25,7 +25,7 @@ generate_roxygen_docs <- function(input_file_path, output_file_path) {
   output <- character()
   
   # create \describe block
-  output <- c(output, "\\describe{")
+  output <- c(output, paste0("#' ", "\\describe{"))
   
   # iterate over input rows and create \item blocks
   for (i in seq_len(nrow(input_df))) {
@@ -33,14 +33,14 @@ generate_roxygen_docs <- function(input_file_path, output_file_path) {
     description <- input_df[i, "description"]
     
     # create \item block
-    item <- paste0("\\item{`", variable_name, "`}{", description, "}")
+    item <- paste0("#'   ", "\\item{", variable_name, "}{", description, "}")
     
     # append to output
     output <- c(output, item)
   }
   
   # close \describe block
-  output <- c(output, "}")
+  output <- c(output, "#' }")
   
   # write output to file
   writeLines(output, output_file_path)
@@ -48,7 +48,7 @@ generate_roxygen_docs <- function(input_file_path, output_file_path) {
 
 
 
-generate_roxygen_docs(input_file_path = "data/dictionary.csv", output_file_path = "qechairquality.R")
+generate_roxygen_docs(input_file_path = "data/dictionary.csv", output_file_path = "R/qechairquality.R")
 
 
 # step by step
