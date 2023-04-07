@@ -1,5 +1,0 @@
-directory,file_name,variable_name,variable_type,description
-data,qechairquality.rda,date_time,dttm,Timestamp of the airquality measurement.
-data,qechairquality.rda,location,character,Label for sensor location.
-data,qechairquality.rda,indicator,character,Air quality measurement indicator (pm2.5 and pm10).
-data,qechairquality.rda,value,double,Measured value in µg/m3.
