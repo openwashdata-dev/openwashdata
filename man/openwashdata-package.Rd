@@ -11,5 +11,10 @@ What the package does (one paragraph).
 \author{
 \strong{Maintainer}: Lars Schöbitz \email{lschoebitz@ethz.ch} (\href{https://orcid.org/0000-0003-2196-5015}{ORCID})
 
+Authors:
+\itemize{
+  \item Matthias Bannert \email{bannert@kof.ethz.ch} (\href{https://orcid.org/0000-0001-7901-9254}{ORCID})
+}
+
 }
 \keyword{internal}
