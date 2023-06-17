@@ -4,8 +4,9 @@
 \alias{init}
 \title{Copy Workflow Template}
 \usage{
-init()
+init(target = file.path(getwd(), "bootstrap_pkg.R"))
 }
 \description{
-Copy Workflow Template
+Copies workflow template file into the current working directory
+and opens the file if RStudio is the editor.
 }
