@@ -2,26 +2,35 @@
 % Please edit documentation in R/create_data_pkg.R
 \name{create_data_pkg}
 \alias{create_data_pkg}
-\title{Create a New openwashdata Dataset R Package.}
+\title{Create a New openwashdata Dataset R Package Skeleton.}
 \usage{
 create_data_pkg(
   pkg_name,
-  user.name = NULL,
-  user.email = NULL,
+  pkg_title,
+  description = NULL,
+  maintainer,
   location = NULL,
+  pkg_license = use_ccby_license(),
+  readme_md = TRUE,
+  use_data_raw = TRUE,
   open = FALSE
 )
 }
 \arguments{
 \item{pkg_name}{The name of the package to create.}
 
-\item{user.name}{The name of the package author.}
+\item{pkg_title}{character package headline.}
 
-\item{user.email}{The email address of the package author.}
+\item{description}{character what the package does.}
+
+\item{maintainer}{call to utils::person(), see examples on how to format the arg.}
 
 \item{location}{The location where the package should be created.}
 
 \item{open}{A logical value indicating whether to open the package directory in a new window.}
+
+\item{boolean}{should a basic README.md file be added? Defaults to TRUE.
+#' @param boolean should a basic raw data folder be added? Defaults to TRUE.}
 }
 \description{
 This function creates a new data R package with the specified name and author information.
@@ -30,7 +39,4 @@ GitHub organization. Note that the functions requires a GitHub account that
 has write access to the openwashdata GitHub organization as well as up and running RSA
 key pair authentication with GitHub set up. Personal access tokens will be
 created in the process though.
-}
-\examples{
-create_data_pkg("my_package", "John Doe", "johndoe@example.com")
 }

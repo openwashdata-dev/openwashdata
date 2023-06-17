@@ -2,6 +2,13 @@
 
 export(create_data_pkg)
 export(generate_roxygen_docs)
+export(init)
+export(use_cff)
+importFrom(cffr,cff_create)
+importFrom(cffr,cff_parse_person)
+importFrom(cffr,cff_validate)
+importFrom(cffr,cff_write)
+importFrom(desc,desc)
 importFrom(gert,git_config_global)
 importFrom(gert,git_init)
 importFrom(gh,gh_whoami)

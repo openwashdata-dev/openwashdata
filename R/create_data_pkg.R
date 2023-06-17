@@ -1,5 +1,5 @@
 
-#' Create a New openwashdata Dataset R Package.
+#' Create a New openwashdata Dataset R Package Skeleton.
 #'
 #' This function creates a new data R package with the specified name and author information.
 #' It automatically creates a git repository and remote git data repository within the openwashdata
@@ -10,20 +10,26 @@
 #'
 #'
 #' @param pkg_name The name of the package to create.
-#' @param user.name The name of the package author.
-#' @param user.email The email address of the package author.
+#' @param pkg_title character package headline.
+#' @param description character what the package does.
+#' @param maintainer call to utils::person(), see examples on how to format the arg.
 #' @param location The location where the package should be created.
+#' @param boolean should a basic README.md file be added? Defaults to TRUE.
+#' #' @param boolean should a basic raw data folder be added? Defaults to TRUE.
 #' @param open A logical value indicating whether to open the package directory in a new window.
 #' @importFrom gert git_init git_config_global
 #' @importFrom usethis create_package proj_set proj_get create_github_token use_github use_git_config
 #' @importFrom gitcreds gitcreds_set
 #' @importFrom gh gh_whoami
 #' @export
-#' @examples
-#' create_data_pkg("my_package", "John Doe", "johndoe@example.com")
 create_data_pkg <- function(pkg_name,
+                            pkg_title,
+                            description = NULL,
+                            maintainer,
                             location = NULL,
                             pkg_license = use_ccby_license(),
+                            readme_md = TRUE,
+                            use_data_raw = TRUE,
                             open = FALSE
                             ){
   if(!check_pkg_name(pkg_name)){
@@ -33,31 +39,28 @@ Make sure to use lowercase letters without numbers or whitespaces only.")
     stop("stopping... No package generated.")
   }
 
+  current_wd <- getwd()
+
   if(is.null(location)){
     pkg_path <- file.path(dirname(getwd()), pkg_name)
   } else {
-    pkg_path <- pkg_name
+    pkg_path <- file.path(location, pkg_name)
   }
 
   # basic pkg
-  create_package(pkg_path, open = open)
+  create_package(pkg_path,
+                 fields = list(Title = pkg_title,
+                               Description = description,
+                               "Authors@R" = maintainer,
+                               License = pkg_license),
+                 open = open)
   proj_set(pkg_path)
-  # needs a project to be set.... as most usethis things...
-  pkg_license
-
-
-
-
-
-
-
-  # maybe store things to status environment
-  # walk through datasteps
-  # citation process separately.
-  # github push probably separate process
-
-
-
+  if(readme_md){
+    use_readme_md()
+  }
+  if(use_data_raw){
+    use_data_raw()
+  }
 
 }
 
