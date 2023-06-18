@@ -38,3 +38,29 @@ setwd(proj_get())
 # add CITATION file to the data package skeleton
 use_cff()
 
+
+# Initialize git once all the files are there.
+init_git()
+
+
+# DATA Manipulation Stage START #############
+
+
+
+# DATA Manipulation Stage END #############
+
+
+# openwashdata GitHub
+push_package()
+
+
+
+
+
+
+
+
+
+
+
+
