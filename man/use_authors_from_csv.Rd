@@ -4,7 +4,7 @@
 \alias{use_authors_from_csv}
 \title{Read Authors from a CSV File and Add Authors to DESCRIPTION}
 \usage{
-use_authors_from_csv(f = "data-raw/authors.csv", quiet = FALSE)
+use_authors_from_csv(f = "bootstrap/authors.csv", quiet = FALSE)
 }
 \arguments{
 \item{f}{character file location of the authors .csv file}

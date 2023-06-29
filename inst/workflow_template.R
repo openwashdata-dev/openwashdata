@@ -1,16 +1,8 @@
 library(openwashdata)
 library(usethis)
 
-# Create Data Package Skeleton ####
+# Process after running init_data_pkg(). #########
 
-create_data_pkg(pkg_name = "pkgname",
-                pkg_title = "Diving Deep",
-                description = "A scuba gear for R",
-                maintainer = person(
-                  "Matt", "Bunny",
-                  email = "matt@openwashdata.org",
-                  role = c("aut", "cre")),
-                location = "../../openwashdata/")
 
 # Add Additional authors ####
 # This not only the basis for license file creation, but
@@ -25,13 +17,14 @@ use_author(
   comment = c(ORCID = "YOUR-ORCID-ID")
   )
 
+# or read as a bulk import of multiple authors from a .csv file.
+use_authors_skeleton()
+a <- use_authors_from_csv()
+
+# edit the skeleton & read in csv.
 # Write the CITATION file
 # This is based on the DESCRIPTION file of the
 # active working directory
-# remember current working directory
-# in case we want to switch back later
-cwd <- getwd()
-setwd(proj_get())
 
 # ! MAKE SURE ORCIDs are correct ####
 # OR left out as these are being validated !!

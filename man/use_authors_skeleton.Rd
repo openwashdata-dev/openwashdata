@@ -4,10 +4,10 @@
 \alias{use_authors_skeleton}
 \title{Create a Simple Skeleton to Conveniently Gather Author Information}
 \usage{
-use_authors_skeleton(dest = "data-raw/authors.csv")
+use_authors_skeleton(dest = NULL)
 }
 \arguments{
-\item{dest}{character location of output file}
+\item{dest}{character full path to authors skeleton file. Defaults to NULL.}
 }
 \description{
 Create a Simple Skeleton to Conveniently Gather Author Information

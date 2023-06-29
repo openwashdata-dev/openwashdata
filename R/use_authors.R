@@ -11,7 +11,7 @@
 #' @importFrom dplyr rowwise
 #' @importFrom readr read_csv
 #' @export
-use_authors_from_csv <- function(f = "data-raw/authors.csv", quiet = FALSE){
+use_authors_from_csv <- function(f = "bootstrap/authors.csv", quiet = FALSE){
   a <- read_csv(f, col_types = "cccc")
   n <- a |>
     rowwise() |>
@@ -35,11 +35,16 @@ use_authors_from_csv <- function(f = "data-raw/authors.csv", quiet = FALSE){
 #' Create a Simple Skeleton to Conveniently Gather Author Information
 #'
 #'
-#' @param dest character location of output file
+#' @param dest character full path to authors skeleton file. Defaults to NULL.
 #' @importFrom readr write_csv
 #' @importFrom dplyr tibble
 #' @export
-use_authors_skeleton <- function(dest = "data-raw/authors.csv"){
+use_authors_skeleton <- function(dest = NULL){
+  if(is.null(dest)){
+    dest <- file.path(proj_get(),"bootstrap","authors.csv")
+  } else {
+    dest
+  }
   tbl <- tibble(
     first_name = character(),
     last_name = character(),

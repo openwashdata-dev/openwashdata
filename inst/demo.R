@@ -70,3 +70,22 @@ create_data_pkg(pkg_name = "blubb",
 #
 #
 #
+# new version June 29
+
+# - create skeleton
+#    - author skeleton
+# - add raw data
+# - create meta information from raw data
+# - add dictionary
+# - use_data codebook
+# - use_bulk_author
+
+
+
+
+
+
+
+
+
+
