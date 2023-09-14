@@ -35,12 +35,14 @@ use_dictionary_skeleton <- function(data_location = NULL,
     # expand grid of colnames and types
     dname <- gsub("\\.", data_path, dirname(d))
     dta <- as_tibble(readRDS(file.path(data_path,d)))
+    nobs <- nrow(dta)
     types <- sapply(dta, typeof)
     tibble(
       directory = dname,
       file_name = d,
       variable_name = names(types),
       variable_type = types,
+      nobs = nobs,
       description = rep(NA_character_, length(types))
     )
   })
