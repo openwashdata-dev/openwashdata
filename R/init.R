@@ -3,7 +3,7 @@
 #'
 #' @param pkg_dir_name character folder name of the package
 #' @param path character parent directory of the package folder.
-#' @importFrom usethis use_data_raw use_build_ignore proj_set proj_activate create_package
+#' @importFrom usethis use_data_raw use_build_ignore proj_set proj_get proj_activate create_package
 #' @export
 init_data_pkg <- function(pkg_dir_name, path = NULL){
   curr_proj <- proj_get()
@@ -14,15 +14,16 @@ init_data_pkg <- function(pkg_dir_name, path = NULL){
   } else {
     pkg_path <- file.path(path, pkg_dir_name)
   }
+
+  create_package(pkg_path)
+
   # create folder and move bootstrap equipment inside the data pkg
   # and to add rbuildignore
-  dir.create(pkg_path)
+  #dir.create(pkg_path)
   dir.create(file.path(pkg_path, "bootstrap"))
   bootstrap_path <- file.path(pkg_path, "bootstrap")
   p <- system.file("workflow_template.R", package = "openwashdata")
   file.copy(p, file.path(bootstrap_path, "bootstrap_pkg.R"))
-
-  create_package(pkg_path)
 
   proj_set(pkg_path)
   use_build_ignore("bootstrap")

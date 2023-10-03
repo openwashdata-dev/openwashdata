@@ -1,0 +1,88 @@
+---
+title: "Walkthrough"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(openwashdata)
+```
+
+
+```{r basic, eval=FALSE}
+library(openwashdata)
+init_data_pkg("superheros",
+              path = "openwashdata-dev")
+
+```
+
+Let's assume we have created a dataset named `superheros` in a folder `openwashdata-dev`.
+This will open up new instance of RStudio with a project called superheros located in the `openwashdata-dev` folder. Let's focus our attention to this new instance of RStudio and walk through the steps in `bootstrap/bootstrap_pkg.R`.
+
+## 1. Adding Authors
+
+Once we got a the package skeleton, let's use the `authors.csv` template file to conveniently add multiple authors.
+
+
+```
+first_name,last_name,email,role,orcid
+"Matt", "Bannert", "my@email.com", "aut","0000-0001-7901-9254"
+"Lars", "Schöbitz", "another@email.com", "aut;cre","0000-0003-2196-5015"
+
+```
+
+>Note the use of ";" to list Lars' multiple roles as he is author and maintainer of the package.
+
+## 2. Create a Citation File
+
+Citation files facilitate citation of the data package as they are shown in multiple places such GitHub or Zenodo. To do so, simply run `use_cff()` as blue printed in the bootstrap file^[for more information on citation files and further modification, check the cffr package: https://docs.ropensci.org/cffr/]. 
+
+
+
+
+
+In addition, citation information will be accessible through the corresponding R function which will create BibTeX output.
+
+
+```{r}
+library(superheros)
+citation("superheros")
+
+```
+
+## 3. Extract Dictionary Skeleton from Data File 
+
+Now let's move our raw data file(s) to the `data-raw` folder of our package. 
+
+
+
+
+## 4. Init Git Version Control 
+
+Once a first version of all files is around, it's a good time to initialize a `git` repository^[Note that git is not part of R and a git client needs to be installed. For more information on git and git based workflows, see also https://rse-book.github.io/version-control.html.].
+
+```{r,eval=FALSE}
+init_git()
+```
+
+
+
+
+
+
+
+
+
+
+
+

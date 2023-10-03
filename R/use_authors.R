@@ -18,7 +18,7 @@ use_authors_from_csv <- function(f = "bootstrap/authors.csv", quiet = FALSE){
     transmute(df = use_author(given = first_name,
                               family = last_name,
                               email = email,
-                              role = role,
+                              role = unlist(strsplit(role,";")),
                               comment = ifelse(is.na(orcid),
                                                '',
                                                orcid)
