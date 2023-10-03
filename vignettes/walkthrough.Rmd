@@ -62,7 +62,8 @@ citation("superheros")
 
 ## 3. Extract Dictionary Skeleton from Data File 
 
-Now let's move our raw data file(s) to the `data-raw` folder of our package. 
+Now let's move our raw data file(s) to the `data-raw` folder of our package.
+
 
 
 
