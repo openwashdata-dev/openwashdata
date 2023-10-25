@@ -21,23 +21,25 @@ library(openwashdata)
 
 ```{r basic, eval=FALSE}
 library(openwashdata)
-init_data_pkg("superheros",
-              path = "openwashdata-dev")
+init_data_pkg("faecalsludgekampala",
+              path = "~/repositories/openwashdata/")
 
 ```
 
-Let's assume we have created a dataset named `superheros` in a folder `openwashdata-dev`.
+Let's assume we have created a dataset named `faecal-sludge-kampala` in a folder `~/repositories/openwashdata/`.
 This will open up new instance of RStudio with a project called superheros located in the `openwashdata-dev` folder. Let's focus our attention to this new instance of RStudio and walk through the steps in `bootstrap/bootstrap_pkg.R`.
 
 ## 1. Adding Authors
 
 Once we got a the package skeleton, let's use the `authors.csv` template file to conveniently add multiple authors.
 
+>Note that setting at least one author (and maintainer) is mandatory for the build process because the openwashdata package does not make use of the default author concept.
+
 
 ```
 first_name,last_name,email,role,orcid
-"Matt", "Bannert", "my@email.com", "aut","0000-0001-7901-9254"
-"Lars", "Schöbitz", "another@email.com", "aut;cre","0000-0003-2196-5015"
+"Lars", "Schöbitz", "lschoebitz@ethz.ch", "aut;cre","0000-0003-2196-5015"
+"Matt", "Bannert", "bannert@kof.ethz.ch", "aut","0000-0001-7901-9254"
 
 ```
 
@@ -45,24 +47,41 @@ first_name,last_name,email,role,orcid
 
 ## 2. Create a Citation File
 
-Citation files facilitate citation of the data package as they are shown in multiple places such GitHub or Zenodo. To do so, simply run `use_cff()` as blue printed in the bootstrap file^[for more information on citation files and further modification, check the cffr package: https://docs.ropensci.org/cffr/]. 
+After we entered all author information to `bootstrap/authors.csv`, let's turn
+to the `bootstrap/bootstrap.R` script of our package project `faecalsludgekampala` 
+and execute 
 
-
-
-
-
-In addition, citation information will be accessible through the corresponding R function which will create BibTeX output.
-
-
-```{r}
-library(superheros)
-citation("superheros")
-
+```{r, eval=FALSE}
+a <- use_authors_from_csv()
 ```
+
+to create a CITATION file. 
+
+CITATION files facilitate citation of the data package as they are shown in places such GitHub or Zenodo. For more information on citation files and further modification, check the cffr package: https://docs.ropensci.org/cffr/. 
+
+Once the package is built, citation information will be accessible through the corresponding R function which will create BibTeX output.
+
+
 
 ## 3. Extract Dictionary Skeleton from Data File 
 
-Now let's move our raw data file(s) to the `data-raw` folder of our package.
+Now let's move whatever data files we have in place. This means, move our raw data file(s) to the `data-raw` folder of our package. In our case we have a single spreadsheet file `sustainability.xls`^[This raw spreadsheet file ships with the openwashdata package. In case you want to reproduce this exact example, you can find the file using `system.file("sustainability.xls", package = "openwashdata")`]. So let's try to read this file into R and see how it behaves.
+
+```{r, eval=FALSE}
+library(readxl)
+stn <- read_xls("data-raw/sustainability.xls")
+
+```
+
+```{r, echo=FALSE}
+library(readxl)
+xls <- read_xls(system.file("sustainability.xls",
+                            package = "openwashdata"))
+xls
+
+```
+
+As you can see the data does not behave well, yet. Somehow `readxl` does not recognize the semicolon `;` as a delimiter and therefore only sees a single column. While this is uncommon for Excel spreadsheet and more reminiscant of a common `.csv` issue, it should be an easy fix. 
 
 
 
@@ -79,6 +98,14 @@ init_git()
 
 
 
+## 5. Check out Work
+
+
+```{r, eval=FALSE}
+library(faecalsludgekampala)
+citation("faecalsludgekampala")
+
+```
 
 
 

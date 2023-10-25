@@ -8,7 +8,7 @@
 #' @param quiet logical should the function be quiet about the number of authors
 #' found in the csv file? Defaults to FALSE.
 #' @importFrom usethis use_author
-#' @importFrom dplyr rowwise
+#' @importFrom dplyr rowwise transmute
 #' @importFrom readr read_csv
 #' @export
 use_authors_from_csv <- function(f = "bootstrap/authors.csv", quiet = FALSE){

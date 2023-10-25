@@ -10,11 +10,12 @@
 #' @param recursive boolean should this function iterate through
 #' subfolders of data-raw? Defaults to TRUE.
 #' @importFrom readr read_rds
-#' @importFrom dplyr as_tibble
+#' @importFrom tools file_path_sans_ext
+#' @importFrom dplyr as_tibble bind_rows
 #' @export
 use_dictionary_skeleton <- function(data_location = NULL,
                                     skeleton_dest = "bootstrap/dictionary.csv",
-                                    data_file_pattern = ".Rds",
+                                    data_file_pattern = ".Rda|.rda",
                                     ignore_pattern = "codebook.Rda",
                                     recursive = TRUE){
   # TODO add function to expose the dictionary to
@@ -34,7 +35,8 @@ use_dictionary_skeleton <- function(data_location = NULL,
     # dname = directory name
     # expand grid of colnames and types
     dname <- gsub("\\.", data_path, dirname(d))
-    dta <- as_tibble(readRDS(file.path(data_path,d)))
+    load(file.path(data_path,d))
+    dta <- get(file_path_sans_ext(basename(d)))
     nobs <- nrow(dta)
     types <- sapply(dta, typeof)
     tibble(

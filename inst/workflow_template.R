@@ -3,29 +3,26 @@ library(usethis)
 
 # Process after running init_data_pkg(). #########
 
+# AUTHORS ####
+# EDIT bootstrap/authors.csv
+# to add authors for bulk import
+a <- use_authors_from_csv()
 
-# Add Additional authors ####
+# You can add single authors using the below syntax.
 # This not only the basis for license file creation, but
 # also for the CITATION file and data publication.
 # Make to add all authors at this stage.
 # To do so simply add multiple use_author() calls here.
 
-use_author(
-  given = "Donald",
-  family = "Duck",
-  role = "aut",
-  comment = c(ORCID = "YOUR-ORCID-ID")
-  )
+# use_author(
+#   given = "Donald",
+#   family = "Duck",
+#   role = "aut",
+#   comment = c(ORCID = "YOUR-ORCID-ID")
+#   )
 
-# or read as a bulk import of multiple authors from a .csv file.
-use_authors_skeleton()
-a <- use_authors_from_csv()
 
-# edit the skeleton & read in csv.
-# Write the CITATION file
-# This is based on the DESCRIPTION file of the
-# active working directory
-
+# CITATION FILE ####
 # ! MAKE SURE ORCIDs are correct ####
 # OR left out as these are being validated !!
 # add CITATION file to the data package skeleton

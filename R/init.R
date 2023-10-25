@@ -15,7 +15,9 @@ init_data_pkg <- function(pkg_dir_name, path = NULL){
     pkg_path <- file.path(path, pkg_dir_name)
   }
 
-  create_package(pkg_path)
+  # The below fields argument avoids setting a default
+  # author who is cumbersome to remove.
+  create_package(pkg_path, fields = list("Authors@R" = NULL))
 
   # create folder and move bootstrap equipment inside the data pkg
   # and to add rbuildignore
@@ -27,7 +29,7 @@ init_data_pkg <- function(pkg_dir_name, path = NULL){
 
   proj_set(pkg_path)
   use_build_ignore("bootstrap")
-  use_data_raw(name = "data_processing", open = FALSE)
+  use_data_raw(name = pkg_dir_name, open = FALSE)
   use_authors_skeleton()
   # set the project back to where we were because
   # we're spinning up a new RStudio session anyway.

@@ -7,7 +7,7 @@
 use_dictionary_skeleton(
   data_location = NULL,
   skeleton_dest = "bootstrap/dictionary.csv",
-  data_file_pattern = ".Rds",
+  data_file_pattern = ".Rda|.rda",
   ignore_pattern = "codebook.Rda",
   recursive = TRUE
 )
