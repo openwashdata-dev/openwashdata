@@ -63,9 +63,9 @@ Once the package is built, citation information will be accessible through the c
 
 
 
-## 3. Extract Dictionary Skeleton from Data File 
+## 3. Process Raw Data
 
-Now let's move whatever data files we have in place. This means, move our raw data file(s) to the `data-raw` folder of our package. In our case we have a single spreadsheet file `sustainability.xls`^[This raw spreadsheet file ships with the openwashdata package. In case you want to reproduce this exact example, you can find the file using `system.file("sustainability.xls", package = "openwashdata")`]. So let's try to read this file into R and see how it behaves.
+Now let's process files with the actual data and store them to the `data` folder from where the dataset that get bundled into the package need to be. In our case we have a single spreadsheet file `sustainability.xls`^[This raw spreadsheet file ships with the openwashdata package. In case you want to reproduce this exact example, you can find the file using `system.file("sustainability.xls", package = "openwashdata")`]. So let's try to read this file into R and see how it behaves.
 
 ```{r, eval=FALSE}
 library(readxl)
@@ -75,19 +75,70 @@ stn <- read_xls("data-raw/sustainability.xls")
 
 ```{r, echo=FALSE}
 library(readxl)
-xls <- read_xls(system.file("sustainability.xls",
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(usethis)
+stn <- read_xls(system.file("sustainability.xls",
                             package = "openwashdata"))
-xls
+stn
 
 ```
 
-As you can see the data does not behave well, yet. Somehow `readxl` does not recognize the semicolon `;` as a delimiter and therefore only sees a single column. While this is uncommon for Excel spreadsheet and more reminiscant of a common `.csv` issue, it should be an easy fix. 
+As you can see the data does not behave well, yet. Somehow `readxl` does not recognize the semicolon `;` as a delimiter and therefore only sees a single column. While this is uncommon for Excel spreadsheet and more remeniscant of a common `.csv` issue, it should be an easy fix. 
+
+```{r}
+# extract names first because we can't assign them
+# until the data.frame has 15 columns
+nms <- unlist(str_split(names(stn),pattern = ";"))
+nms <- tolower(nms)
+nms <- gsub("_$","",nms)
+# set temporary name to make handling easier
+names(stn) <- "col1"
+dtaset <- stn |>
+  separate(col1,
+           into = paste0("col",1:length(nms)),
+           sep = ";")
+names(dtaset) <- nms
+```
+
+Now, let's add reasonable data types to the columns we've just created.
+
+```{r}
+# set proper data types ####
+faecalsludge <- dtaset |>
+  mutate(across(c(fid), as.integer)) |>
+  mutate(across(c(height, volume, longitude, latitude), as.numeric)) |>
+  mutate(date = as.Date(date, format = "%d.%m.%Y")) |>
+  mutate(date_1 = as.Date(date_1, format = "%d.%m.%Y"))
+```
+
+Finally, let's store our data to the folder `data/` where R packages store datasets that are part of the package. Datasets in `data/` will be baked into the package at build time. 
+
+```{r,eval=FALSE}
+
+```
+
+## 4. Create a Data Description Skeleton
+
+Let's use the dataset we've just created to create a a basic outline inlcuding the information we can automatically extract data, such as column names and data types. 
+
+```{r, eval=FALSE}
+use_dictionary()
+```
+
+This will create a `dictionary.csv` file in `bootstrap/`. Use a text editor to replace the `NA`s in the description column and  add a description description. 
 
 
 
 
 
-## 4. Init Git Version Control 
+## 5. Compose Data Description
+
+
+
+
+## 6. Init Git Version Control 
 
 Once a first version of all files is around, it's a good time to initialize a `git` repository^[Note that git is not part of R and a git client needs to be installed. For more information on git and git based workflows, see also https://rse-book.github.io/version-control.html.].
 

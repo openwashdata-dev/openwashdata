@@ -1,5 +1,3 @@
-
-
 #' Extract Dictionary from Data Folder to Create a Pre-Filled Skeleton
 #'
 #' @param data_location character folder location of the raw_data folder.
@@ -13,7 +11,7 @@
 #' @importFrom tools file_path_sans_ext
 #' @importFrom dplyr as_tibble bind_rows
 #' @export
-use_dictionary_skeleton <- function(data_location = NULL,
+use_dictionary <- function(data_location = NULL,
                                     skeleton_dest = "bootstrap/dictionary.csv",
                                     data_file_pattern = ".Rda|.rda",
                                     ignore_pattern = "codebook.Rda",

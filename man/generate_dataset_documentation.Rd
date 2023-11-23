@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_dataset_doc.R
 \name{generate_dataset_documentation}
 \alias{generate_dataset_documentation}
-\title{Create Docu}
+\title{Create Documentation from Dictionary Bootstrap File}
 \usage{
 generate_dataset_documentation(
   dataset_name,
@@ -17,12 +17,10 @@ generate_dataset_documentation(
 
 \item{dataset_title}{character vector short, one line description of the dataset.}
 
-\item{dict_path}{character path to the dictionary .csv files.
-Defaults to NULL (bootstrap folder).}
+\item{dict_path}{character path to the dictionary .csv files. Defaults to NULL (bootstrap folder).}
 
-\item{output_path}{character path for the output. Defaults to NULL,
-using the R/ folder.}
+\item{output_path}{character path for the output. Defaults to NULL, using the R/ folder.}
 }
 \description{
-Create Docu
+Use a dictionary file to create a roxygen2 style R data package documentation entry.
 }
