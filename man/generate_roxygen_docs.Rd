@@ -4,22 +4,25 @@
 \alias{generate_roxygen_docs}
 \title{Generate roxygen2 documentation from a CSV file}
 \usage{
-generate_roxygen_docs(input_file_path, output_file_path)
+generate_roxygen_docs(input_file_path, output_file_path, df_name = NULL)
 }
 \arguments{
 \item{input_file_path}{Path to the input CSV file.}
 
 \item{output_file_path}{Path to the output file that will contain the roxygen2 documentation.}
+
+\item{df_name}{Optional name of the variable to filter the input dataframe by. Default is NULL.}
 }
 \description{
-This function takes a CSV table with columns \code{variable_name} and \code{description} as input
-and outputs roxygen2 documentation for \verb{\\describe} and \verb{\\item}.
+This function takes a CSV table with columns \code{variable_name} and \code{description} as input,
+optionally filters it by \code{variable_name}, and outputs roxygen2 documentation for \verb{\\describe} and \verb{\\item}.
 }
 \examples{
 \dontrun{
 # Generate roxygen2 documentation from example.csv
-generate_roxygen_docs("example.csv", "output.txt")
+generate_roxygen_docs("example.csv", "output.R")
+# Generate roxygen2 documentation from example.csv for a specific variable name
+generate_roxygen_docs("example.csv", "output.R", df_name = "specific_variable")
 }
-
 
 }
