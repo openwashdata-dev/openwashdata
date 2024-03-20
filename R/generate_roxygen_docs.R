@@ -26,9 +26,9 @@ generate_roxygen_docs <- function(input_file_path, output_file_path, df_name = N
   # Check if df_name is provided and not NULL, then filter input_df
   if (!is.null(df_name)) {
     library(dplyr)
-    input_df <- filter(input_df, variable_name == df_name)
+    input_df <- filter(input_df, file_name == paste0(df_name, ".rda"))
     # Update output_file_path to have the same name as df_name with .R extension
-    output_file_path <- paste0(df_name, ".R")
+    output_file_path <- paste0("R/", df_name, ".R")
   }
 
   # Initialize output character vector
@@ -51,6 +51,9 @@ generate_roxygen_docs <- function(input_file_path, output_file_path, df_name = N
 
   # Close \describe block
   output <- c(output, "#' }")
+
+  # set output file path
+  output_file_path <- paste0("R/", df_name, ".R")
 
   # Write output to file
   writeLines(output, output_file_path)
