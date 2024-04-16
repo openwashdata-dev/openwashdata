@@ -1,0 +1,23 @@
+---
+title: "duringdev"
+author: "Mian"
+date: "2024-04-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = FALSE,
+  message = FALSE)
+```
+
+## Create README with owd template
+```{r}
+usethis::use_readme_rmd(open = FALSE)
+usethis::use_template(
+  template = "README.rmd",
+  package = "openwashdata" #TODO: change to new name
+)
+devtools::build_readme()
+```

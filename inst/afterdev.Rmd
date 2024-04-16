@@ -1,0 +1,50 @@
+---
+title: "afterdev"
+author: "Mian"
+date: "2024-04-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Update metadata google sheet
+Update the column id, status, date_published, link_github, link_pkg_website
+Requirements:
+- id will be the largest id +1
+- status is changed to `published` 
+- date_published to be the date in DESCRIPTION
+- link_github and link_pkg_websit: will these be automatical filled?
+```{r}
+name <- "whatawaste"
+# Find the row to update
+
+# Update the row information
+dataset_id <- max(metadata_df$id, na.rm = TRUE) + 1
+dataset_date <- NA
+# if the field is empty, warn the user to updae DESCRIPTION first
+r <- metadata_df |>
+  dplyr::filter(pkg_name == name) |>
+  dplyr::mutate(`id` = dataset_id, 
+                `status` = "published",
+                `date_published` = as.Date("2024-04-14"), #TODO: Read DESCRIPTION
+                )
+
+metadata_df <- dplyr::rows_update(metadata_df, r, by = "pkg_name")
+# Write to update the google sheet 
+# googlesheets4::range_write()
+```
+TODO:
+- set up pre-authorized account for using googlesheet4
+
+## Update by raising an issue in newsletter repository
+```{r}
+bodytext = paste()
+user <- "openwashdata"
+gh::gh(
+  endpoint = sprintf("POST /repos/%s/%s/issues", user, repo_name),
+  title = "[New Issue] Dataset release",
+  body = body_text
+)
+```
