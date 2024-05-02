@@ -27,7 +27,7 @@ init_data_pkg("faecalsludgekampala",
 ```
 
 Let's assume we have created a dataset named `faecal-sludge-kampala` in a folder `~/repositories/openwashdata/`.
-This will open up new instance of RStudio with a project called superheros located in the `openwashdata-dev` folder. Let's focus our attention to this new instance of RStudio and walk through the steps in `bootstrap/bootstrap_pkg.R`.
+This will open up new instance of RStudio with a project called faecal-sludge-kampala located in the `openwashdata-dev` folder. Let's focus our attention to this new instance of RStudio and walk through the steps in `bootstrap/bootstrap_pkg.R`.
 
 ## 1. Adding Authors
 
